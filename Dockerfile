@@ -9,6 +9,8 @@ RUN ./install_geographiclib_datasets.sh
 COPY apm_config.yaml /opt/ros/noetic/share/mavros/launch/apm_config.yaml
 # Envs
 ENV FCUURL=/dev/ttyACM0
+RUN mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/src && git clone http://github.com/duanenielsen/offboard
+RUN . /opt/ros/noetic/setup.sh && cd ~/catkin_ws && catkin_make install 
 
 # Finally the command
 COPY entrypoint.sh /
